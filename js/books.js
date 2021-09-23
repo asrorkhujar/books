@@ -1,4 +1,4 @@
-[
+var books = [
   {
     "author": "Chinua Achebe",
     "country": "Nigeria",

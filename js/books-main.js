@@ -1,16 +1,17 @@
 // GLOBAL VARS
 const genres = [];
+// const genres = [];
 const bookList = JSON.parse(localStorage.getItem('booklist')) || [];
 
 // PAGINATION
 let TOTAL_RESULTS = 10;
-let PER_PAGE_COUNT = 10;
+let PER_PAGE_COUNT = 9;
 let PAGE_LINKS_TO_SHOW = 5; // only odd numbers
 let NEIGHBOUR_PAGES_COUNT = Math.floor(PAGE_LINKS_TO_SHOW / 2);
 let CURRENT_PAGE = 1;
 let PAGES_COUNT = Math.ceil(TOTAL_RESULTS / PER_PAGE_COUNT);
 
-let foundBooks = books.slice(0, 100);
+let foundBooks = books;
 
 // SEARCH FORM
 const elBookSearchForm = document.querySelector('.js-book-search-form');
@@ -84,7 +85,7 @@ elBookListModal.addEventListener('click', (evt) => {
 })
 
 // FUNCTIONS
-function getUniqueGenres() {
+/* function getUniqueGenres() {
   books.forEach(book => {
     book.categories.forEach(category => {
       if (!genres.includes(category)) {
@@ -93,7 +94,7 @@ function getUniqueGenres() {
     });
   });
   genres.sort();
-}
+} */
 
 function showGenreOptions() {
   const elGenresFragment = document.createDocumentFragment();
@@ -112,7 +113,7 @@ function showBooks(books, titleRegex = '') {
 
   for (let book of books) {
     const elNewBookItem = elBooksItemTemplate.cloneNode(true);
-    elNewBookItem.querySelector('.book__img').src = book.youtubePoster;
+    elNewBookItem.querySelector('.book__img').src = book.imageLink;
     elNewBookItem.querySelector('.book__img').alt = `${book.title} poster`;
 
     if (titleRegex.source !== '(?:)' && titleRegex) {
@@ -124,10 +125,11 @@ function showBooks(books, titleRegex = '') {
     elNewBookItem.querySelector('.book__language').textContent = book.language;
     elNewBookItem.querySelector('.book__year').textContent = book.year;
     elNewBookItem.querySelector('.book__pages').textContent = book.pages;
-    elNewBookItem.querySelector('.js-more-info-button').dataset.imdbId = book.imdbId;
+    elNewBookItem.querySelector('.book__author').textContent = book.author;
+    elNewBookItem.querySelector('.book-info-modal__wikipedia-link').href = book.link;
     const elBookmarkBtn = elNewBookItem.querySelector('.js-bookmark-button');
-    elBookmarkBtn.dataset.imdbId = book.imdbId;
-    const indexBookInBookList = bookList.findIndex(book => book.imdbId === elBookmarkBtn.dataset.imdbId);
+    elBookmarkBtn.dataset.title = book.title;
+    const indexBookInBookList = bookList.findIndex(book => book.title === elBookmarkBtn.dataset.title);
 
     if (indexBookInBookList > -1) {
       elBookmarkBtn.classList.add('btn-secondary');
@@ -172,34 +174,34 @@ function showBooks(books, titleRegex = '') {
   }
 } */
 
-function findMovies(titleRegex) {
-  return movies.filter(movie => {
-    const meetsCriteria = movie.title.match(titleRegex) && (elGenresSelect.value === 'All' || movie.categories.includes(elGenresSelect.value)) && (elMinYearInput.value.trim() === '' || movie.year >= Number(elMinYearInput.value)) && (elMaxYearInput.value.trim() === '' || movie.year <= Number(elMaxYearInput.value));
+function findBooks(titleRegex) {
+  return books.filter(book => {
+    const meetsCriteria = book.title.match(titleRegex) && (elGenresSelect.value === 'All' || book.categories.includes(elGenresSelect.value)) && (elMinYearInput.value.trim() === '' || book.year >= Number(elMinYearInput.value)) && (elMaxYearInput.value.trim() === '' || book.year <= Number(elMaxYearInput.value));
     return meetsCriteria;
   });
 }
 
-function sortMovies(movies, sortType) {
+function sortBooks(books, sortType) {
   if (sortType === 'az') {
-    movies.sort((a, b) => {
+    books.sort((a, b) => {
       if (a.title > b.title) return 1;
       if (a.title < b.title) return -1;
       return 0;
     });
   } else if (sortType === 'za') {
-    movies.sort((a, b) => {
+    books.sort((a, b) => {
       if (a.title < b.title) return 1;
       if (a.title > b.title) return -1;
       return 0;
     });
-  } else if (sortType === 'rating_asc') {
-    movies.sort((a, b) => a.imdbRating - b.imdbRating);
-  } else if (sortType === 'rating_desc') {
-    movies.sort((a, b) => b.imdbRating - a.imdbRating);
+  } else if (sortType === 'pages_asc') {
+    books.sort((a, b) => a.pages - b.pages);
+  } else if (sortType === 'pages_desc') {
+    books.sort((a, b) => b.pages - a.pages);
   } else if (sortType === 'year_asc') {
-    movies.sort((a, b) => a.year - b.year);
+    books.sort((a, b) => a.year - b.year);
   } else if (sortType === 'year_desc') {
-    movies.sort((a, b) => b.year - a.year);
+    books.sort((a, b) => b.year - a.year);
   }
 }
 
@@ -207,12 +209,12 @@ function sortMovies(movies, sortType) {
 function showPagination() {
   let startIndex = (CURRENT_PAGE - 1) * PER_PAGE_COUNT;
   let endIndex = startIndex + PER_PAGE_COUNT;
-  showMovies(foundMovies.slice(startIndex, endIndex));
+  showBooks(foundBooks.slice(startIndex, endIndex));
 
   let startPage = CURRENT_PAGE - NEIGHBOUR_PAGES_COUNT;
   let endPage = CURRENT_PAGE + NEIGHBOUR_PAGES_COUNT;
 
-  PAGES_COUNT = Math.ceil(foundMovies.length / PER_PAGE_COUNT);
+  PAGES_COUNT = Math.ceil(foundBooks.length / PER_PAGE_COUNT);
 
   if (endPage > PAGES_COUNT) {
     startPage -= Math.abs(PAGES_COUNT - endPage);
@@ -350,8 +352,8 @@ function onBooksListInfoButtonClick(evt) {
 function onModalInfoButtonClick(evt) {
   if (evt.target.matches('.js-bookmark-button')) {
     const elBookmarkBtn = evt.target;
-    const book = books.find(book => book.imdbId === elBookmarkBtn.dataset.imdbId);
-    const indexBookInBookList = bookList.findIndex(book => book.imdbId === elBookmarkBtn.dataset.imdbId);
+    const book = books.find(book => book.title === elBookmarkBtn.dataset.title);
+    const indexBookInBookList = bookList.findIndex(book => book.title === elBookmarkBtn.dataset.title);
 
     if (indexBookInBookList === -1) {
       bookList.push(book);
@@ -372,8 +374,8 @@ function onModalInfoButtonClick(evt) {
 function onBookInfoModalHidden() {
   elBookInfoModalIFrame.src = '';
 
-  const elBookmarkBtn = elBooksList.querySelector(`.js-bookmark-button[data-imdb-id="${elBookInfoModal.dataset.uniqueId}"]`);
-  const indexBookInBookList = bookList.findIndex(book => book.imdbId === elBookmarkBtn.dataset.imdbId);
+  const elBookmarkBtn = elBooksList.querySelector(`.js-bookmark-button[data-title="${elBookListModal.dataset.uniqueId}"]`);
+  const indexBookInBookList = bookList.findIndex(book => book.title === elBookmarkBtn.dataset.title);
 
   if (indexBookInBookList > -1) {
     elBookmarkBtn.classList.add('btn-secondary');
@@ -392,14 +394,7 @@ if (elBooksList) {
   elBooksList.addEventListener('click', onBooksListInfoButtonClick);
 }
 
-if (elBookInfoModal) {
-  elBookInfoModal.addEventListener('click', onModalInfoButtonClick);
-}
 
-// Stop iframe video playback on modal hide
-if (elBookInfoModal) {
-  elBookInfoModal.addEventListener('hidden.bs.modal', onBookInfoModalHidden);
-}
 
 if (elBookSearchForm) {
   elBookSearchForm.addEventListener('submit', onBookSearchFormSubmit);
@@ -431,7 +426,7 @@ if (elPaginationList) {
 
 
 // INITIATION
-getUniqueGenres();
-showGenreOptions();
+/* getUniqueGenres();
+showGenreOptions(); */
 showBooks(foundBooks, '');
 showPagination();
