@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Books</title>
   <link rel="stylesheet" href="css/bootstrap5.min.css">
+  <link rel="stylesheet" href="css/styles.css">
   <style>
     .book__img {
       object-fit: cover;
@@ -24,10 +25,11 @@
     <section>
       <h2 class="visually-hidden">Books</h2>
 
-      <form class="row mb-3 js-book-search-form" action="https://echo.htmlacademy.ru" method="GET">
+      <form class="row mb-3 js-book-search-form bg-danger rounded-3 p-3" action="https://echo.htmlacademy.ru"
+        method="GET">
         <div class="col-md-2">
           <input class="form-control js-book-search-input" type="search" name="title" placeholder="Book title"
-          aria-label="Book title">
+            aria-label="Book title">
         </div>
         <div class="col-md-2 mt-2 mt-md-0">
           <select class="form-control js-language-select" name="language" aria-label="Language">
@@ -41,7 +43,7 @@
         </div>
         <div class="col-md-2 mt-2 mt-md-0">
           <input class="form-control js-start-year-input" type="number" name="year" aria-label="Year"
-          placeholder="Year">
+            placeholder="Year">
         </div>
         <div class="col-md-2 mt-2 mt-md-0">
           <select class="form-control js-sort-select" name="sort" aria-label="Sorting">
@@ -58,8 +60,8 @@
           <button class="btn btn-primary" type="submit">Search</button>
         </div>
         <div class="col-md-3">
-          <button class="btn btn-success js-book-list-button mt-3" type="button" data-bs-toggle="modal"
-          data-bs-target="#modal-book-list">Book list</button>
+          <button class="btn btn-warning js-book-list-button mt-3" type="button" data-bs-toggle="modal"
+            data-bs-target="#modal-book-list">Book list</button>
         </div>
       </form>
 
@@ -129,7 +131,8 @@
               <p class="book__author card-text h5">Henrik Ibsen</p>
             </div>
             <div class="d-flex mt-auto">
-              <a class="book-info-modal__wikipedia-link me-5 btn btn-success flex-grow-1" href="#" target="_blank">Wikipedia</a>
+              <a class="book-info-modal__wikipedia-link me-5 btn btn-success flex-grow-1" href="#"
+                target="_blank">Wikipedia</a>
               <button class="flex-grow-1 btn btn-outline-secondary btn-sm js-bookmark-button">Bookmark</button>
             </div>
           </div>
@@ -147,6 +150,6 @@
     <script src="js/bootstrap5.bundle.min.js"></script>
     <script src="js/books.js"></script>
     <script src="js/books-main.js"></script>
-  </body>
+</body>
 
-  </html>
+</html>

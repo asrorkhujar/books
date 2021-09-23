@@ -119,10 +119,10 @@ function showCountryOptions() {
     const elCountryOption = document.createElement('option');
     elCountryOption.textContent = count;
     elCountryOption.value = count;
-    elCountriesFragment .appendChild(elCountryOption);
+    elCountriesFragment.appendChild(elCountryOption);
   });
   console.log(elCountriesFragment);
-  elCountrySelect.appendChild(elCountriesFragment );
+  elCountrySelect.appendChild(elCountriesFragment);
 }
 
 
