@@ -1,6 +1,6 @@
 // GLOBAL VARS
-const genres = [];
-// const genres = [];
+const language = [];
+const country = [];
 const bookList = JSON.parse(localStorage.getItem('booklist')) || [];
 
 // PAGINATION
@@ -16,9 +16,9 @@ let foundBooks = books;
 // SEARCH FORM
 const elBookSearchForm = document.querySelector('.js-book-search-form');
 const elBookSearchInput = elBookSearchForm.querySelector('.js-book-search-input');
-const elGenresSelect = elBookSearchForm.querySelector('select');
+const elLanguageSelect = elBookSearchForm.querySelector('.js-language-select');
+const elCountrySelect = elBookSearchForm.querySelector('.js-country-select');
 const elMinYearInput = elBookSearchForm.querySelector('.js-start-year-input');
-const elMaxYearInput = elBookSearchForm.querySelector('.js-end-year-input');
 const elSortSelect = elBookSearchForm.querySelector('.js-sort-select');
 
 
@@ -37,20 +37,8 @@ const elPaginationList = elPagination.querySelector('.js-pagination-list');
 const elBooksItemTemplate = document.querySelector('#books-item-template').content;
 const elPaginationItemTemplate = document.querySelector('#pagination-item-template').content;
 
-/* // MODAL
-const elBookInfoModal = document.querySelector('.book-info-modal');
-const elBookInfoModalTitle = elBookInfoModal.querySelector('.book-info-modal__title');
-const elBookInfoModalRating = elBookInfoModal.querySelector('.book-info-modal__rating');
-const elBookInfoModalYear = elBookInfoModal.querySelector('.book-info-modal__year');
-const elBookInfoModalDuration = elBookInfoModal.querySelector('.book-info-modal__duration');
-const elBookInfoModalIFrame = elBookInfoModal.querySelector('.book-info-modal__iframe');
-const elBookInfoModalCategories = elBookInfoModal.querySelector('.book-info-modal__categories');
-const elBookInfoModalSummary = elBookInfoModal.querySelector('.book-info-modal__summary');
-const elBookInfoModalImdbLink = elBookInfoModal.querySelector('.book-info-modal__imdb-link');
-const elBookInfoModalBookmarkButton = elBookInfoModal.querySelector('.js-bookmark-button'); */
-
+// MODAL
 //BOOKLIST-MODAL-LIST
-
 const elBookListModal = document.querySelector('.booklist-modal');
 const elBookListALL = elBookListModal.querySelector('.booklist-modal__list');
 const bookListFragment = document.createDocumentFragment();
@@ -59,7 +47,7 @@ function showBooklist() {
   elBookListALL.innerHTML = '';
 
   for (let bookItem of bookList) {
-    let newBookmark = `<li class="bookmark booklist-modal__item list-group-item d-flex align-items-center justify-content-between" data-unique-id="${bookItem.imdbId}">
+    let newBookmark = `<li class="bookmark booklist-modal__item list-group-item d-flex align-items-center justify-content-between" data-unique-id="${bookItem.title}">
     <h3 class="bookmark__title h5">${bookItem.title} (${bookItem.year})</h3>
     <button class="bookmark__remove btn btn-danger btn-sm text-white" type="button" title="Remove from booklist">&#10006;</button>
     </li>`;
@@ -71,10 +59,10 @@ elBookListModal.addEventListener('show.bs.modal', showBooklist);
 
 elBookListModal.addEventListener('click', (evt) => {
   if (evt.target.matches('.bookmark__remove')) {
-    const bookmarkIndex = bookList.findIndex(bookmark => bookmark.imdbId === evt.target.dataset.uniqueId);
+    const bookmarkIndex = bookList.findIndex(bookmark => bookmark.title === evt.target.dataset.uniqueId);
     const removedBookmark = bookList.splice(bookmarkIndex, 1)[0];
 
-    const elBookmark = elBooksList.querySelector(`.js-bookmark-button[data-imdb-id="${removedBookmark.imdbId}"]`);
+    const elBookmark = elBooksList.querySelector(`.js-bookmark-button[data-title="${removedBookmark.title}"]`);
     elBookmark.classList.remove('btn-secondary');
     elBookmark.classList.add('btn-outline-secondary');
     elBookmark.textContent = 'Bookmark';
@@ -85,27 +73,59 @@ elBookListModal.addEventListener('click', (evt) => {
 })
 
 // FUNCTIONS
-/* function getUniqueGenres() {
+
+// LANGUAGES
+function getUniqueLanguages() {
+  let langs = [];
   books.forEach(book => {
-    book.categories.forEach(category => {
-      if (!genres.includes(category)) {
-        genres.push(category);
+    langs.push(book.language)
+    langs.forEach(lang => {
+      if (!language.includes(lang)) {
+        language.push(lang);
       }
     });
   });
-  genres.sort();
-} */
-
-function showGenreOptions() {
-  const elGenresFragment = document.createDocumentFragment();
-  genres.forEach(genre => {
-    const elGenreOption = document.createElement('option');
-    elGenreOption.textContent = genre;
-    elGenreOption.value = genre;
-    elGenresFragment.appendChild(elGenreOption);
-  });
-  elGenresSelect.appendChild(elGenresFragment);
+  language.sort();
 }
+
+function showLanguageOptions() {
+  const elLanguagesFragment = document.createDocumentFragment();
+  language.forEach(lang => {
+    const elLanguageOption = document.createElement('option');
+    elLanguageOption.textContent = lang;
+    elLanguageOption.value = lang;
+    elLanguagesFragment.appendChild(elLanguageOption);
+  });
+  elLanguageSelect.appendChild(elLanguagesFragment);
+}
+
+// COUNTRIES
+function getUniqueCountries() {
+  let count = [];
+  books.forEach(book => {
+    count.push(book.country)
+    count.forEach(count => {
+      if (!country.includes(count)) {
+        country.push(count);
+      }
+    });
+  });
+  country.sort();
+}
+
+function showCountryOptions() {
+  const elCountriesFragment = document.createDocumentFragment();
+  country.forEach(count => {
+    const elCountryOption = document.createElement('option');
+    elCountryOption.textContent = count;
+    elCountryOption.value = count;
+    elCountriesFragment .appendChild(elCountryOption);
+  });
+  console.log(elCountriesFragment);
+  elCountrySelect.appendChild(elCountriesFragment );
+}
+
+
 
 function showBooks(books, titleRegex = '') {
   elBooksList.innerHTML = '';
@@ -123,8 +143,8 @@ function showBooks(books, titleRegex = '') {
     }
 
     elNewBookItem.querySelector('.book__language').textContent = book.language;
-    elNewBookItem.querySelector('.book__year').textContent = book.year;
-    elNewBookItem.querySelector('.book__pages').textContent = book.pages;
+    elNewBookItem.querySelector('.book__year').textContent = book.year + '-year';
+    elNewBookItem.querySelector('.book__pages').textContent = book.pages + '-pages';
     elNewBookItem.querySelector('.book__author').textContent = book.author;
     elNewBookItem.querySelector('.book-info-modal__wikipedia-link').href = book.link;
     const elBookmarkBtn = elNewBookItem.querySelector('.js-bookmark-button');
@@ -176,7 +196,7 @@ function showBooks(books, titleRegex = '') {
 
 function findBooks(titleRegex) {
   return books.filter(book => {
-    const meetsCriteria = book.title.match(titleRegex) && (elGenresSelect.value === 'All' || book.categories.includes(elGenresSelect.value)) && (elMinYearInput.value.trim() === '' || book.year >= Number(elMinYearInput.value)) && (elMaxYearInput.value.trim() === '' || book.year <= Number(elMaxYearInput.value));
+    const meetsCriteria = book.title.match(titleRegex) && (elLanguageSelect.value === 'Language' || book.language.includes(elLanguageSelect.value)) && (elCountrySelect.value === 'Country' || book.country.includes(elCountrySelect.value)) && (elMinYearInput.value.trim() === '' || book.year >= Number(elMinYearInput.value));
     return meetsCriteria;
   });
 }
@@ -426,7 +446,9 @@ if (elPaginationList) {
 
 
 // INITIATION
-/* getUniqueGenres();
-showGenreOptions(); */
+getUniqueLanguages();
+showLanguageOptions();
+getUniqueCountries();
+showCountryOptions();
 showBooks(foundBooks, '');
 showPagination();
