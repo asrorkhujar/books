@@ -309,7 +309,7 @@ function onBookSearchFormSubmit(evt) {
     showPagination();
 
   } else {
-    elBooksList.innerHTML = '<div class="col-12">No books found</div>';
+    elBooksList.innerHTML = '<div class="col-12 h3 text-danger" style="font-family: Stick No Bills;">No books found</div>';
   }
 }
 
@@ -339,47 +339,6 @@ function onBooksListInfoButtonClick(evt) {
     localStorage.setItem('booklist', JSON.stringify(bookList));
   }
 }
-
-// MODAL-BOOKMARK-BUTTON
-
-/* function onModalInfoButtonClick(evt) {
-  if (evt.target.matches('.js-bookmark-button')) {
-    const elBookmarkBtn = evt.target;
-    const book = books.find(book => book.title === elBookmarkBtn.dataset.title);
-    const indexBookInBookList = bookList.findIndex(book => book.title === elBookmarkBtn.dataset.title);
-
-    if (indexBookInBookList === -1) {
-      bookList.push(book);
-      elBookmarkBtn.classList.add('btn-success');
-      elBookmarkBtn.classList.remove('btn-outline-success');
-      elBookmarkBtn.textContent = 'Bookmarked ✅';
-    } else {
-      bookList.splice(indexBookInBookList, 1);
-      elBookmarkBtn.classList.remove('btn-success');
-      elBookmarkBtn.classList.add('btn-outline-success');
-      elBookmarkBtn.textContent = 'Bookmark';
-    }
-
-    localStorage.setItem('booklist', JSON.stringify(bookList));
-  }
-}
-
-function onBookInfoModalHidden() {
-  elBookInfoModalIFrame.src = '';
-
-  const elBookmarkBtn = elBooksList.querySelector(`.js-bookmark-button[data-title="${elBookListModal.dataset.uniqueId}"]`);
-  const indexBookInBookList = bookList.findIndex(book => book.title === elBookmarkBtn.dataset.title);
-
-  if (indexBookInBookList > -1) {
-    elBookmarkBtn.classList.add('btn-secondary');
-    elBookmarkBtn.classList.remove('btn-outline-secondary');
-    elBookmarkBtn.textContent = 'Bookmarked ✔';
-  } else {
-    elBookmarkBtn.classList.remove('btn-secondary');
-    elBookmarkBtn.classList.add('btn-outline-secondary');
-    elBookmarkBtn.textContent = 'Bookmark';
-  }
-} */
 
 
 // EVENT LISTENERS
