@@ -49,7 +49,7 @@ function showBooklist() {
   for (let bookItem of bookList) {
     let newBookmark = `<li class="bookmark booklist-modal__item list-group-item d-flex align-items-center justify-content-between" data-unique-id="${bookItem.title}">
     <h3 class="bookmark__title h5">${bookItem.title} (${bookItem.year})</h3>
-    <button class="bookmark__remove btn btn-danger btn-sm text-white" type="button" title="Remove from booklist">&#10006;</button>
+    <button class="bookmark__remove btn btn-danger btn-sm text-white" type="button" title="Remove from booklist" data-unique-id="${bookItem.title}">&#10006;</button>
     </li>`;
     elBookListALL.insertAdjacentHTML('beforeend', newBookmark)
   }
@@ -58,6 +58,7 @@ function showBooklist() {
 elBookListModal.addEventListener('show.bs.modal', showBooklist);
 
 elBookListModal.addEventListener('click', (evt) => {
+  debugger;
   if (evt.target.matches('.bookmark__remove')) {
     const bookmarkIndex = bookList.findIndex(bookmark => bookmark.title === evt.target.dataset.uniqueId);
     const removedBookmark = bookList.splice(bookmarkIndex, 1)[0];
@@ -74,7 +75,7 @@ elBookListModal.addEventListener('click', (evt) => {
 
 // FUNCTIONS
 
-// LANGUAGES
+// LANGUAGES-SORT
 function getUniqueLanguages() {
   let langs = [];
   books.forEach(book => {
@@ -99,7 +100,7 @@ function showLanguageOptions() {
   elLanguageSelect.appendChild(elLanguagesFragment);
 }
 
-// COUNTRIES
+// COUNTRIES-SORT
 function getUniqueCountries() {
   let count = [];
   books.forEach(book => {
@@ -166,32 +167,6 @@ function showBooks(books, titleRegex = '') {
   elBooksList.appendChild(elBooksFragment);
 }
 
-/* function updateBookInfoModal(imdbId) {
-  const book = books.find(book => book.imdbId === imdbId);
-
-  elMovieInfoModal.dataset.uniqueId = imdbId;
-  elMovieInfoModalTitle.textContent = movie.title;
-  elMovieInfoModalRating.textContent = movie.imdbRating;
-  elMovieInfoModalYear.textContent = movie.year;
-  elMovieInfoModalDuration.textContent = getHoursStringFromMinutes(movie.runtime);
-  elMovieInfoModalIFrame.src = `https://www.youtube-nocookie.com/embed/${movie.youtubeId}`;
-  elMovieInfoModalCategories.textContent = movie.categories.join(', ');
-  elMovieInfoModalSummary.textContent = movie.summary;
-  elMovieInfoModalImdbLink.href = `https://www.imdb.com/title/${movie.imdbId}`;
-  elMovieInfoModalBookmarkButton.dataset.imdbId = movie.imdbId;
-
-  const indexMovieInWatchList = watchList.findIndex(movie => movie.imdbId === imdbId);
-
-  if (indexMovieInWatchList > -1) {
-    elMovieInfoModalBookmarkButton.classList.add('btn-success');
-    elMovieInfoModalBookmarkButton.classList.remove('btn-outline-success');
-    elMovieInfoModalBookmarkButton.textContent = 'Bookmarked ✅';
-  } else {
-    elMovieInfoModalBookmarkButton.classList.remove('btn-success');
-    elMovieInfoModalBookmarkButton.classList.add('btn-outline-success');
-    elMovieInfoModalBookmarkButton.textContent = 'Bookmark';
-  }
-} */
 
 function findBooks(titleRegex) {
   return books.filter(book => {
@@ -335,20 +310,20 @@ function onBookSearchFormSubmit(evt) {
     showPagination();
 
   } else {
-    elBooksList.innerHTML = '<div class="col-12">Book no found</div>';
+    elBooksList.innerHTML = '<div class="col-12">No books found</div>';
   }
 }
 
 function onBooksListInfoButtonClick(evt) {
-  if (evt.target.matches('.js-more-info-button')) {
-    updateBookInfoModal(evt.target.dataset.imdbId);
+  /* if (evt.target.matches('.js-more-info-button')) {
+    updateBookInfoModal(evt.target.dataset.title);
     return;
-  }
+  } */
 
   if (evt.target.matches('.js-bookmark-button')) {
     const elBookmarkBtn = evt.target;
-    const book = books.find(book => book.imdbId === elBookmarkBtn.dataset.imdbId);
-    const indexBookInBookList = bookList.findIndex(book => book.imdbId === elBookmarkBtn.dataset.imdbId);
+    const book = books.find(book => book.title === elBookmarkBtn.dataset.title);
+    const indexBookInBookList = bookList.findIndex(book => book.title === elBookmarkBtn.dataset.title);
 
     if (indexBookInBookList === -1) {
       bookList.push(book);
@@ -368,7 +343,7 @@ function onBooksListInfoButtonClick(evt) {
 
 // MODAL-BOOKMARK-BUTTON
 
-function onModalInfoButtonClick(evt) {
+/* function onModalInfoButtonClick(evt) {
   if (evt.target.matches('.js-bookmark-button')) {
     const elBookmarkBtn = evt.target;
     const book = books.find(book => book.title === elBookmarkBtn.dataset.title);
@@ -405,14 +380,13 @@ function onBookInfoModalHidden() {
     elBookmarkBtn.classList.add('btn-outline-secondary');
     elBookmarkBtn.textContent = 'Bookmark';
   }
-}
+} */
 
 
 // EVENT LISTENERS
 if (elBooksList) {
   elBooksList.addEventListener('click', onBooksListInfoButtonClick);
 }
-
 
 
 if (elBookSearchForm) {

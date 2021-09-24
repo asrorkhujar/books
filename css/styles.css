@@ -1,10 +1,109 @@
+@font-face {
+  font-family: "Stick No Bills";
+  src: url("/fonts/StickNoBills-Light.woff2") format("woff2"),
+      url("StickNoBills-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Stick No Bills";
+  src: url("/fonts/StickNoBills-ExtraBold.woff2") format("woff2"),
+      url("StickNoBills-ExtraBold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Stick No Bills";
+  src: url("/fonts/StickNoBills-Bold.woff2") format("woff2"),
+      url("StickNoBills-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Stick No Bills";
+  src: url("/fonts/StickNoBills-ExtraLight.woff2") format("woff2"),
+      url("StickNoBills-ExtraLight.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Stick No Bills";
+  src: url("/fonts/StickNoBills-Regular.woff2") format("woff2"),
+      url("StickNoBills-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Stick No Bills";
+  src: url("/fonts/StickNoBills-SemiBold.woff2") format("woff2"),
+      url("StickNoBills-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Stick No Bills";
+  src: url("/fonts/StickNoBills-Medium.woff2") format("woff2"),
+      url("StickNoBills-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: "Cinzel Decorative";
+  src: url("/fonts/CinzelDecorative-Regular.woff2") format("woff2"),
+      url("CinzelDecorative-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cinzel Decorative";
+  src: url("/fonts/CinzelDecorative-Bold.woff2") format("woff2"),
+      url("CinzelDecorative-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cinzel Decorative";
+  src: url("/fonts/CinzelDecorative-Black.woff2") format("woff2"),
+      url("CinzelDecorative-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
+
 body {
   background-image: linear-gradient(217deg, rgba(245, 237, 237, 0.8), rgba(240, 236, 236, 0.8)), url("/images/bg-4.jpg");
   background-repeat: repeat;
-  /* background-position: center center; */
-  /* background-size: auto; */
+  font-family: "Cinzel Decorative", Arial, Helvetica, sans-serif;
 }
 
-.book {
-  background-color: white;
+.book__language {
+ font-family: "Stick No Bills";
+}
+.book__year {
+  font-family: "Stick No Bills";
+}
+.book__pages {
+  font-family: "Stick No Bills";
 }
