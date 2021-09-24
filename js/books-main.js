@@ -58,7 +58,6 @@ function showBooklist() {
 elBookListModal.addEventListener('show.bs.modal', showBooklist);
 
 elBookListModal.addEventListener('click', (evt) => {
-  debugger;
   if (evt.target.matches('.bookmark__remove')) {
     const bookmarkIndex = bookList.findIndex(bookmark => bookmark.title === evt.target.dataset.uniqueId);
     const removedBookmark = bookList.splice(bookmarkIndex, 1)[0];
