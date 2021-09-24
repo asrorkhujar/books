@@ -121,7 +121,6 @@ function showCountryOptions() {
     elCountryOption.value = count;
     elCountriesFragment.appendChild(elCountryOption);
   });
-  console.log(elCountriesFragment);
   elCountrySelect.appendChild(elCountriesFragment);
 }
 
@@ -147,10 +146,10 @@ function showBooks(books, titleRegex = '') {
     elNewBookItem.querySelector('.book__pages').textContent = book.pages + '-pages';
     elNewBookItem.querySelector('.book__author').textContent = book.author;
     elNewBookItem.querySelector('.book-info-modal__wikipedia-link').href = book.link;
+
     const elBookmarkBtn = elNewBookItem.querySelector('.js-bookmark-button');
     elBookmarkBtn.dataset.title = book.title;
     const indexBookInBookList = bookList.findIndex(book => book.title === elBookmarkBtn.dataset.title);
-
     if (indexBookInBookList > -1) {
       elBookmarkBtn.classList.add('btn-secondary');
       elBookmarkBtn.classList.remove('btn-outline-secondary');
@@ -336,7 +335,7 @@ function onBookSearchFormSubmit(evt) {
     showPagination();
 
   } else {
-    elBooksList.innerHTML = '<div class="col-12">No film found</div>';
+    elBooksList.innerHTML = '<div class="col-12">Book no found</div>';
   }
 }
 
