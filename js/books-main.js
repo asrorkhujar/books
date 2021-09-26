@@ -21,8 +21,6 @@ const elCountrySelect = elBookSearchForm.querySelector('.js-country-select');
 const elMinYearInput = elBookSearchForm.querySelector('.js-start-year-input');
 const elSortSelect = elBookSearchForm.querySelector('.js-sort-select');
 
-
-
 // RESULT
 const elBooksList = document.querySelector('.books__list');
 
@@ -124,8 +122,6 @@ function showCountryOptions() {
   elCountrySelect.appendChild(elCountriesFragment);
 }
 
-
-
 function showBooks(books, titleRegex = '') {
   elBooksList.innerHTML = '';
   const elBooksFragment = document.createDocumentFragment();
@@ -159,13 +155,10 @@ function showBooks(books, titleRegex = '') {
       elBookmarkBtn.classList.add('btn-outline-secondary');
       elBookmarkBtn.textContent = 'Bookmark';
     }
-
     elBooksFragment.appendChild(elNewBookItem);
   }
-
   elBooksList.appendChild(elBooksFragment);
 }
-
 
 function findBooks(titleRegex) {
   return books.filter(book => {
@@ -262,13 +255,10 @@ function goToPage(pageIndex) {
   if (pageIndex > PAGES_COUNT) {
     pageIndex = PAGES_COUNT;
   }
-
   if (pageIndex < 1) {
     pageIndex = 1;
   }
-
   CURRENT_PAGE = pageIndex;
-
   showPagination();
 }
 
@@ -314,12 +304,7 @@ function onBookSearchFormSubmit(evt) {
 }
 
 function onBooksListInfoButtonClick(evt) {
-  /* if (evt.target.matches('.js-more-info-button')) {
-    updateBookInfoModal(evt.target.dataset.title);
-    return;
-  } */
-
-  if (evt.target.matches('.js-bookmark-button')) {
+   if (evt.target.matches('.js-bookmark-button')) {
     const elBookmarkBtn = evt.target;
     const book = books.find(book => book.title === elBookmarkBtn.dataset.title);
     const indexBookInBookList = bookList.findIndex(book => book.title === elBookmarkBtn.dataset.title);
@@ -345,7 +330,6 @@ function onBooksListInfoButtonClick(evt) {
 if (elBooksList) {
   elBooksList.addEventListener('click', onBooksListInfoButtonClick);
 }
-
 
 if (elBookSearchForm) {
   elBookSearchForm.addEventListener('submit', onBookSearchFormSubmit);
