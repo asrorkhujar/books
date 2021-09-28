@@ -27,148 +27,148 @@
       <h2 class="visually-hidden">Books</h2>
       <div class="d-flex">
         <button class="btn btn-info d-sm-none mb-3 d-block flex-grow-1 text-white" type="button"
-          data-bs-toggle="collapse" data-bs-target="#collapseForm" aria-expanded="false" aria-controls="collapseForm">
-          <span class="d-flex align-items-center">
-            <span><img src="images/icon-settings.svg" alt="" width="25" height="25"></span>
-            <span class="h5 mb-0 ms-2" style="font-family: Stick No Bills;">Filter</span>
-          </span>
-        </button>
-      </div>
-      <div class="collapse" id="collapseForm">
-        <form class="row mb-3 js-book-search-form" action="https://echo.htmlacademy.ru" method="GET">
-          <div class="col-md-2">
-            <input class="form-control rounded-pill js-book-search-input" type="search" name="title"
-              placeholder="Book title" aria-label="Book title"
-              style="border-radius: 15px; background-color: #fff8ee; border: 1px solid rgb(219, 215, 215);">
-          </div>
-          <div class="col-md-2 mt-2 mt-md-0">
-            <select class="form-control rounded-pill js-language-select" name="language" aria-label="Language"
-              style="border-radius: 15px; background-color: #fff8ee; border: 1px solid rgb(219, 215, 215);">
-              <option value="Language">Language</option>
-            </select>
-          </div>
-          <div class="col-md-2 mt-2 mt-md-0">
-            <select class="form-control rounded-pill js-country-select" name="country" aria-label="Country"
-              style="border-radius: 15px; background-color: #fff8ee; border: 1px solid rgb(219, 215, 215);">
-              <option value="Country">Country</option>
-            </select>
-          </div>
-          <div class="col-md-2 mt-2 mt-md-0">
-            <input class="form-control rounded-pill js-start-year-input" type="number" name="year" aria-label="Year"
-              placeholder="Year"
-              style="border-radius: 15px; background-color: #fff8ee; border: 1px solid rgb(219, 215, 215);">
-          </div>
-          <div class="col-md-2 mt-2 mt-md-0">
-            <select class="form-control rounded-pill js-sort-select" name="sort" aria-label="Sorting"
-              style="border-radius: 15px; background-color: #fff8ee; border: 1px solid rgb(219, 215, 215);">
-              <option value="" disabled selected>Sorting by...</option>
-              <option value="az">A-Z</option>
-              <option value="za">Z-A</option>
-              <option value="pages_asc">Pages 🔼</option>
-              <option value="pages_desc">Pages 🔽</option>
-              <option value="year_asc">Year (old-new)</option>
-              <option value="year_desc">Year (new-old)</option>
-            </select>
-          </div>
-          <div class="col-md-1 mt-2 mt-md-0">
-            <button class="btn btn-info text-white rounded-pill" type="submit">Search</button>
-          </div>
-          <div class="col-md-1 mt-2 mt-md-0">
-            <button class="btn btn-warning text-white js-book-list-button" type="button"
-              data-bs-toggle="modal" data-bs-target="#modal-book-list"><img src="images/icon-books.svg" alt="icon-books"
-                width="20" height="20">
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <div class="books__list row">
-        <p class="text-center">Books are coming... Please, wait.</p>
-      </div>
-
-      <!-- PAGINATION -->
-      <div class="d-flex flex-wrap justify-content-center mb-3 js-pagination">
-        <div class="page-item">
-          <a class="page-link js-pagination-start" href="#">⏪</a>
+        data-bs-toggle="collapse" data-bs-target="#collapseForm" aria-expanded="false" aria-controls="collapseForm">
+        <span class="d-flex align-items-center">
+          <span><img src="images/icon-settings.svg" alt="" width="25" height="25"></span>
+          <span class="h5 mb-0 ms-2" style="font-family: Stick No Bills;">Filter</span>
+        </span>
+      </button>
+    </div>
+    <div class="collapse" id="collapseForm">
+      <form class="row mb-3 js-book-search-form" action="https://echo.htmlacademy.ru" method="GET">
+        <div class="col-md-2">
+          <input class="form-control rounded-pill js-book-search-input" type="search" name="title"
+          placeholder="Book title" aria-label="Book title"
+          style="border-radius: 15px; background-color: #fff8ee; border: 1px solid rgb(219, 215, 215);">
         </div>
-        <div class="page-item">
-          <a class="page-link js-pagination-prev" href="#">◀</a>
-        </div>
-        <ul class="pagination order-first col-12 justify-content-center mb-2 js-pagination-list">
+        <div class="col-md-2 mt-2 mt-md-0">
+          <select class="form-control rounded-pill js-language-select" name="language" aria-label="Language"
+          style="border-radius: 15px; background-color: #fff8ee; border: 1px solid rgb(219, 215, 215);">
+          <option value="Language">Language</option>
+        </select>
+      </div>
+      <div class="col-md-2 mt-2 mt-md-0">
+        <select class="form-control rounded-pill js-country-select" name="country" aria-label="Country"
+        style="border-radius: 15px; background-color: #fff8ee; border: 1px solid rgb(219, 215, 215);">
+        <option value="Country">Country</option>
+      </select>
+    </div>
+    <div class="col-md-2 mt-2 mt-md-0">
+      <input class="form-control rounded-pill js-start-year-input" type="number" name="year" aria-label="Year"
+      placeholder="Year"
+      style="border-radius: 15px; background-color: #fff8ee; border: 1px solid rgb(219, 215, 215);">
+    </div>
+    <div class="col-md-2 mt-2 mt-md-0">
+      <select class="form-control rounded-pill js-sort-select" name="sort" aria-label="Sorting"
+      style="border-radius: 15px; background-color: #fff8ee; border: 1px solid rgb(219, 215, 215);">
+      <option value="" disabled selected>Sorting by...</option>
+      <option value="az">A-Z</option>
+      <option value="za">Z-A</option>
+      <option value="pages_asc">Pages 🔼</option>
+      <option value="pages_desc">Pages 🔽</option>
+      <option value="year_asc">Year (old-new)</option>
+      <option value="year_desc">Year (new-old)</option>
+    </select>
+  </div>
+  <div class="col-md-1 mt-2 mt-md-0">
+    <button class="btn btn-info text-white rounded-pill" type="submit">Search</button>
+  </div>
+  <div class="col-md-1 mt-2 mt-md-0">
+    <button class="btn btn-warning text-white js-book-list-button" type="button"
+    data-bs-toggle="modal" data-bs-target="#modal-book-list"><img src="images/icon-books.svg" alt="icon-books"
+    width="20" height="20">
+  </button>
+</div>
+</form>
+</div>
+
+<div class="books__list row">
+  <p class="text-center">Books are coming... Please, wait.</p>
+</div>
+
+<!-- PAGINATION -->
+<div class="d-flex flex-wrap justify-content-center mb-3 js-pagination">
+  <div class="page-item">
+    <a class="page-link js-pagination-start" href="#">⏪</a>
+  </div>
+  <div class="page-item">
+    <a class="page-link js-pagination-prev" href="#">◀</a>
+  </div>
+  <ul class="pagination order-first col-12 justify-content-center mb-2 js-pagination-list">
+  </ul>
+  <div class="page-item">
+    <a class="page-link js-pagination-next" href="#">▶</a>
+  </div>
+  <div class="page-item">
+    <a class="page-link js-pagination-end" href="#">⏩</a>
+  </div>
+</div>
+</section>
+
+<!-- MODALS -->
+<!-- BOOK-list-modal -->
+<div class="booklist-modal modal fade" id="modal-book-list">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="book-list-title text-center">Book list</h3>
+        <ul class="booklist-modal__list list-group">
+
         </ul>
-        <div class="page-item">
-          <a class="page-link js-pagination-next" href="#">▶</a>
-        </div>
-        <div class="page-item">
-          <a class="page-link js-pagination-end" href="#">⏩</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- MODALS -->
-    <!-- BOOK-list-modal -->
-    <div class="booklist-modal modal fade" id="modal-book-list">
-      <div class="modal-dialog modal-md">
-        <div class="modal-content">
-          <div class="modal-body">
-            <h3 class="book-list-title text-center">Book list</h3>
-            <ul class="booklist-modal__list list-group">
-
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
+  </div>
+</div>
 
-    <!-- TEMPLATES -->
-    <template id="books-item-template">
-      <div class="books__item col-sm-6 col-md-4 mb-4">
-        <div class="book card h-100"
-          style="border-radius: 15px;  background-color: #fff8ee; border: 1px solid rgb(219, 215, 215);">
-          <div class="p-4 mx-auto">
-            <img class="book__img card-img-top" src="images/a-Dolls-house.jpg" alt="rasm" width="200" height="400">
-          </div>
-          <div class="card-body d-flex flex-column">
-            <h3 class="book__title h3 text-success card-title">Book title</h3>
-            <div class="d-flex flex-wrap justify-content-between mb-2 small">
-              <span class="d-flex align-items-center me-2">
-                <img class="me-1" src="images/icon-language.svg" alt="" width="16" height="16">
-                <span class="book__language">Norwegian</span>
-              </span>
-              <span class="d-flex align-items-center me-2">
-                <img class="me-1" src="images/icon-date.svg" alt="" width="16" height="16">
-                <span class="book__year">2001</span>
-              </span>
-              <span class="d-flex align-items-center ">
-                <img class="me-1" src="images/icon-library_books.svg" alt="" width="16" height="16">
-                <span class="book__pages">500</span>
-              </span>
-            </div>
-            <div class="d-flex align-items-center mb-4">
-              <img class="me-1" src="images/icon-author.svg" alt="" width="25" height="25">
-              <p class="book__author text-secondary fw-bolder card-text h6">Henrik Ibsen</p>
-            </div>
-            <div class="d-flex mt-auto">
-              <a class="book-info-modal__wikipedia-link me-2 btn btn-success flex-grow-1" href="#" target="_blank">Wiki
-                <img class="ms-1" src="images/wikipedia.svg" alt="" width="20" height="20">
-              </a>
-              <button class="flex-grow-1 btn btn-outline-secondary btn-sm js-bookmark-button">Bookmark</button>
-            </div>
-          </div>
-        </div>
+<!-- TEMPLATES -->
+<template id="books-item-template">
+  <div class="books__item col-sm-6 col-md-4 mb-4">
+    <div class="book card h-100"
+    style="border-radius: 15px;  background-color: #fff8ee; border: 1px solid rgb(219, 215, 215);">
+    <div class="p-4 mx-auto">
+      <img class="book__img card-img-top" src="images/a-Dolls-house.jpg" alt="rasm" width="200" height="400">
+    </div>
+    <div class="card-body d-flex flex-column">
+      <h3 class="book__title h3 text-success card-title">Book title</h3>
+      <div class="d-flex flex-wrap justify-content-between mb-2 small">
+        <span class="d-flex align-items-center me-2">
+          <img class="me-1" src="images/icon-language.svg" alt="" width="16" height="16">
+          <span class="book__language">Norwegian</span>
+        </span>
+        <span class="d-flex align-items-center me-2">
+          <img class="me-1" src="images/icon-date.svg" alt="" width="16" height="16">
+          <span class="book__year">2001</span>
+        </span>
+        <span class="d-flex align-items-center ">
+          <img class="me-1" src="images/icon-library_books.svg" alt="" width="16" height="16">
+          <span class="book__pages">500</span>
+        </span>
       </div>
-    </template>
+      <div class="d-flex align-items-center mb-4">
+        <img class="me-1" src="images/icon-author.svg" alt="" width="25" height="25">
+        <p class="book__author text-secondary fw-bolder card-text h6">Henrik Ibsen</p>
+      </div>
+      <div class="d-flex mt-auto">
+        <a class="book-info-modal__wikipedia-link me-2 btn btn-success flex-grow-1" href="#" target="_blank">Wiki
+          <img class="ms-1" src="images/wikipedia.svg" alt="" width="20" height="20">
+        </a>
+        <button class="flex-grow-1 btn btn-outline-secondary btn-sm js-bookmark-button">Bookmark</button>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
 
-    <!-- PAGINATION-TEMP -->
-    <template id="pagination-item-template">
-      <li class="page-item js-pagination-page">
-        <a class="page-link" href="#"></a>
-      </li>
-    </template>
+<!-- PAGINATION-TEMP -->
+<template id="pagination-item-template">
+  <li class="page-item js-pagination-page">
+    <a class="page-link" href="#"></a>
+  </li>
+</template>
 
-    <script src="js/bootstrap5.bundle.min.js"></script>
-    <script src="js/books.js"></script>
-    <script src="js/books-main.js"></script>
+<script src="js/bootstrap5.bundle.min.js"></script>
+<script src="js/books.js"></script>
+<script src="js/books-main.js"></script>
 </body>
 
 </html>
