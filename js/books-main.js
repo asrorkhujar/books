@@ -71,7 +71,6 @@ elBookListModal.addEventListener('click', (evt) => {
 })
 
 // FUNCTIONS
-
 // LANGUAGES-SORT
 function getUniqueLanguages() {
   let langs = [];
@@ -304,7 +303,7 @@ function onBookSearchFormSubmit(evt) {
 }
 
 function onBooksListInfoButtonClick(evt) {
-   if (evt.target.matches('.js-bookmark-button')) {
+  if (evt.target.matches('.js-bookmark-button')) {
     const elBookmarkBtn = evt.target;
     const book = books.find(book => book.title === elBookmarkBtn.dataset.title);
     const indexBookInBookList = bookList.findIndex(book => book.title === elBookmarkBtn.dataset.title);
@@ -324,7 +323,6 @@ function onBooksListInfoButtonClick(evt) {
     localStorage.setItem('booklist', JSON.stringify(bookList));
   }
 }
-
 
 // EVENT LISTENERS
 if (elBooksList) {
@@ -358,7 +356,6 @@ if (elPaginationList) {
     }
   });
 }
-
 
 // INITIATION
 getUniqueLanguages();
